@@ -48,7 +48,7 @@ const Form = ({ contacts, filter, onAddContacts }) => {
   return (
     <form className={styles.form} onSubmit={handleAddContact}>
       <label className={styles.item}>
-        <p>name</p>
+        <p>Name</p>
         <input
           className={styles.input}
           type="text"

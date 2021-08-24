@@ -5,6 +5,7 @@ import actions from "../../redux/action";
 import ContactListItem from "./ContactListItem";
 
 import PropTypes from "prop-types";
+import styles from "./Contact.module.css";
 
 const ContactsList = ({ contacts, filter, onRemoveContact }) => {
   const filterContact = contacts.filter((contact) =>
@@ -12,7 +13,7 @@ const ContactsList = ({ contacts, filter, onRemoveContact }) => {
   );
   return (
     contacts.length > 0 && (
-      <ul>
+      <ul className={styles.list}>
         {filterContact.map(({ id, name, number }) => (
           <ContactListItem
             key={id}

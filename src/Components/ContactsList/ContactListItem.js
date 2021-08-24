@@ -7,7 +7,9 @@ const ContactListItem = ({ name, number, onClickRemove }) => (
   <li className={styles.items}>
     <p className={styles.item}>{name}:</p>
     <p className={styles.item}>{number}</p>
-    <button onClick={onClickRemove}>Delete</button>
+    <button className={styles.button} onClick={onClickRemove}>
+      X
+    </button>
   </li>
 );
 
