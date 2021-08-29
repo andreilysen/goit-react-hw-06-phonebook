@@ -1,11 +1,6 @@
 {
   "contacts": [
     {
-      "name": "vova",
-      "number": "12345789",
-      "id": "29966f6d-02c3-4315-b5c9-9faad00d4c6b"
-    },
-    {
       "name": "Danila",
       "number": "25971256",
       "id": "c7b900b1-9e99-445a-9598-12ae5bbfa7e4"
@@ -14,6 +9,11 @@
       "name": "victori",
       "number": "85697425",
       "id": "7dc71865-23f8-41ab-83a6-b8a6721a689f"
+    },
+    {
+      "name": "galina",
+      "number": "25698715",
+      "id": "bba1a46e-79e1-4dc0-8556-b3a628c71c74"
     }
   ]
 }
