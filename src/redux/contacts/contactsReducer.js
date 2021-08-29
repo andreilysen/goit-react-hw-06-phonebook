@@ -1,12 +1,26 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import action from "./action";
+import * as action from "./contactsAction";
 
-const contacts = createReducer([], {
-  [action.addContacts]: (state, { payload }) => [payload, ...state],
-  [action.deleteContact]: (state, { payload }) => [
-    ...state.filter((contact) => contact.id !== payload),
-  ],
+const initialState = {
+  items: [],
+  loading: false,
+  error: "",
+};
+
+const contactList = createReducer(initialState, {
+  [action.addContacts]: (state, { payload }) => ({
+    ...state,
+    items: [payload, ...state.items],
+  }),
+  [action.setContacts]: (state, { payload }) => ({
+    ...state,
+    items: [...payload],
+  }),
+  [action.deleteContact]: (state, { payload }) => ({
+    ...state,
+    items: [...state.items.filter((contact) => contact.id !== payload)],
+  }),
 });
 
 const filter = createReducer("", {
@@ -35,6 +49,6 @@ const filter = createReducer("", {
 // };
 
 export default combineReducers({
-  contacts,
+  contactList,
   filter,
 });

@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import actions from "../../redux/action";
+import * as actions from "../../redux/contacts/contactsOperations";
 
-import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 
 import styles from "./Form.module.css";
 
-const Form = ({ contacts, filter, onAddContacts }) => {
+const Form = () => {
+  const { contactList } = useSelector((state) => state.contacts);
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const handleChangeInput = (event) => {
@@ -34,14 +35,14 @@ const Form = ({ contacts, filter, onAddContacts }) => {
     e.preventDefault();
     const id = uuidv4();
     const newContact = { name, number, id };
-    const inContact = contacts.find(
+    const inContact = contactList.items.find(
       (contact) => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
     if (inContact) {
       alert(`${inContact.name}  is already in contacts!`);
       return;
     }
-    onAddContacts(newContact);
+    dispatch(actions.postContactOperation(newContact));
     resetInput();
   };
 
@@ -78,22 +79,4 @@ const Form = ({ contacts, filter, onAddContacts }) => {
   );
 };
 
-Form.propTypes = {
-  onAddContacts: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  const { contacts, filter } = state.contacts;
-  return {
-    contacts: contacts,
-    filter: filter,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAddContacts: (contact) => dispatch(actions.addContacts(contact)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default Form;

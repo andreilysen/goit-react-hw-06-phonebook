@@ -1,11 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
-import actions from "../../redux/action";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../../redux/contacts/contactsAction";
 
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import styles from "../Form/Form.module.css";
 
-const Filter = ({ filter, changeFilter }) => {
+const Filter = () => {
+  const filter = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
   return (
     <>
       <p>Find contacts by name</p>
@@ -14,27 +16,27 @@ const Filter = ({ filter, changeFilter }) => {
         type="text"
         name="filter"
         value={filter}
-        onChange={changeFilter}
+        onChange={(query) => dispatch(actions.addFilter(query.target.value))}
       />
     </>
   );
 };
 
-Filter.propTypes = {
-  // value: PropTypes.string.isRequired,
-  changeFilter: PropTypes.func.isRequired,
-};
+// Filter.propTypes = {
+//   // value: PropTypes.string.isRequired,
+//   changeFilter: PropTypes.func.isRequired,
+// };
 
-const mapStateToProps = (state) => {
-  return {
-    filter: state.filter,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     filter: state.filter,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeFilter: (query) => dispatch(actions.addFilter(query.target.value)),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     changeFilter: (query) => dispatch(actions.addFilter(query.target.value)),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default Filter;
