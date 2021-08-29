@@ -21,32 +21,20 @@ const contactList = createReducer(initialState, {
     ...state,
     items: [...state.items.filter((contact) => contact.id !== payload)],
   }),
+  [action.fetchRequest]: (state, { payload }) => ({
+    ...state,
+    loading: payload,
+  }),
+
+  [action.fetchError]: (state, { payload }) => ({
+    ...state,
+    error: payload,
+  }),
 });
 
 const filter = createReducer("", {
   [action.addFilter]: (_, { payload }) => payload,
 });
-
-// const contacts = (state = [], { type, payload }) => {
-//   switch (type) {
-//     case "addContacts":
-//       return [payload, ...state];
-//     case "deleteContact":
-//       return [...state.filter((contact) => contact.id !== payload)];
-
-//     default:
-//       return state;
-//   }
-// };
-
-// const filter = (state = "", { type, payload }) => {
-//   switch (type) {
-//     case "addFilter":
-//       return payload;
-//     default:
-//       return state;
-//   }
-// };
 
 export default combineReducers({
   contactList,

@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../redux/contacts/contactsAction";
 
-// import PropTypes from "prop-types";
 import styles from "../Form/Form.module.css";
 
 const Filter = () => {
@@ -21,22 +20,5 @@ const Filter = () => {
     </>
   );
 };
-
-// Filter.propTypes = {
-//   // value: PropTypes.string.isRequired,
-//   changeFilter: PropTypes.func.isRequired,
-// };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     filter: state.filter,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     changeFilter: (query) => dispatch(actions.addFilter(query.target.value)),
-//   };
-// };
 
 export default Filter;
